@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Part name="tonegen_f">
+  <PartType id="Mod_ToneGenerator_tonegen_f" name="tonegen_f" modPrefabPath="Assets/_ModAssets_/Parts/tonegen_f.prefab" mass="10" health="100" damageDisconnect="true" sharesRigidBody="false" combineMeshes="false" disconnectForce="10" underwaterDragScalar="30" defaultMaterials="0,0,0,0">
+    <Modifiers>
+      <InputController defaultActivationGroup="0" defaultInput="256" defaultMax="1" defaultMin="0" invertOnMirror="false" invertType="output" name="mod_f" propertyEditorDesc="Frequency" zeroOnDeactivate="true" />
+      <ModModifier id="ToneGenerator_ToneGenerator" type="ToneGenerator, ToneGenerator-Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <DefaultState _audiotype="Sine" _bypass_effects="false" _bypass_leffects="false" _bypass_reverb="false" _volume="0.5" _stereo_pan="0.5" _spatialblend="0" _reverb_mix="1" _doppler="0" _spread="0" _dist_min="5" _dist_max="50" />
+      </ModModifier>
+    </Modifiers>
+    <AttachPoints>
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="-1,0,0" position="-0.25,0,0" />
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="1,0,0" position="0.25,0,0" />
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="0,-1,0" position="0,-0.25,0" />
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="0,1,0" position="0,0.25,0" />
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="0,0,-1" position="0,0,-0.25" />
+      <AttachPoint adaptiveIgnore="false" a="1111" allowRotation="false" display="false" displayWhenDragged="false" fuselageConnection="false" ignoreGrid="false" ignoreSurface="false" jointType="Fixed" wingAttach="false" normal="0,0,1" position="0,0,0.25" />
+    </AttachPoints>
+  </PartType>
+  <DesignerPart name="Tone Generator V.F." category="Gizmos" description="Generates a standard waveform sound effect. Variable frequency selected by Input Controller.">
+    <Assembly>
+      <Parts>
+        <Part id="1" partType="Mod_ToneGenerator_tonegen_f" position="0,0,0" rotation="0,0,0">
+          <InputController.State defaultActivationGroup="0" defaultInput="256" defaultMax="1" defaultMin="0" invertOnMirror="false" invertType="output" name="mod_f" propertyEditorDesc="Frequency" zeroOnDeactivate="true" />
+        </Part>
+      </Parts>
+    </Assembly>
+  </DesignerPart>
+</Part>

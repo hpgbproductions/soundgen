@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModManifest buildID="914437ce-e13b-49ce-96f2-2ae14df7b510">
+  <Mod name="Tone Generator" author="hpgbproductions" versionMajor="1" versionMinor="0" loadPriority="1000" lastUpdated="2020-11-07T11:01:57.5403928Z" apiVersion="1.0.0.0" description="Simple tone generator part.">
+    <Steam title="" visibility="Public" previewPath="" language="English" tags="">
+      <description></description>
+    </Steam>
+    <GameObjects>
+      <GameObject name="tonegen_a" path="Assets/_ModAssets_/Parts/tonegen_a.prefab" />
+      <GameObject name="tonegen_f" path="Assets/_ModAssets_/Parts/tonegen_f.prefab" />
+    </GameObjects>
+    <Assets>
+      <Asset path="Assets/Audio/extra.ogg" />
+      <Asset path="Assets/Audio/noise.ogg" />
+      <Asset path="Assets/Audio/sawtooth.ogg" />
+      <Asset path="Assets/Audio/sine.ogg" />
+      <Asset path="Assets/Audio/square.ogg" />
+      <Asset path="Assets/Supply/Materials/soundgen_t.mat" />
+      <Asset path="Assets/Supply/soundgen_t.png" />
+    </Assets>
+    <MaterialShaderMap>
+      <Material name="soundgen_t" shader="Standard" />
+    </MaterialShaderMap>
+    <Assemblies>
+      <Assembly name="ToneGenerator-Assembly-CSharp.dll" path="Assets/_ModAssets_/ToneGenerator-Assembly-CSharp.dll.bytes" isProjectAssembly="true" />
+    </Assemblies>
+    <Sections>
+      <SimplePlanesMod apiVersion="1.0.0.0">
+        <Maps />
+        <Levels />
+        <Parts>
+          <Part name="tonegen_a" prefabPath="Assets/_ModAssets_/Parts/tonegen_a.prefab" xmlPath="Assets/_ModAssets_/Parts/tonegen_a.xml" />
+          <Part name="tonegen_f" prefabPath="Assets/_ModAssets_/Parts/tonegen_f.prefab" xmlPath="Assets/_ModAssets_/Parts/tonegen_f.xml" />
+        </Parts>
+        <DesignerPlugins />
+        <MapPlugins />
+        <PersistentObjects />
+      </SimplePlanesMod>
+    </Sections>
+  </Mod>
+</ModManifest>
