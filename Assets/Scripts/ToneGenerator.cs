@@ -31,7 +31,7 @@ public class ToneGenerator : Jundroo.SimplePlanes.ModTools.Parts.PartModifier
     private bool _bypass_reverb = false;
 
     [SerializeField]
-    [DesignerPropertySlider(Label = "Volume", MaxValue = 1f, MinValue = 0f, NumberOfSteps = 21, Order = 130)]
+    [DesignerPropertySlider(Label = "Volume", MaxValue = 1.5f, MinValue = 0f, NumberOfSteps = 31, Order = 130)]
     private float _volume = 0.5f;
 
     [SerializeField]

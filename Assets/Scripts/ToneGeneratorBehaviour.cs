@@ -12,6 +12,7 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
     private AudioClipHolder alist;
 
     private bool InDesigner;
+    private float Previous = 0f;
 
     private void Start()
     {
@@ -37,14 +38,34 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
     {
         if (!InDesigner)
         {
+            float input = InputController.Value;
+
             if (modifier.AudioType == "Sine" | modifier.AudioType == "Square" | modifier.AudioType == "Sawtooth")
             {
-                asrc.pitch = InputController.Value / 256f;
+                asrc.pitch = input / 256f;
+                if (input < 1f)
+                {
+                    asrc.Pause();
+                }
+                else if (Previous < 1f && input > 1f)
+                {
+                    asrc.Play();
+                }
             }
             else
             {
-                asrc.pitch = InputController.Value;
+                asrc.pitch = input;
+                if (input < 0.001f)
+                {
+                    asrc.Pause();
+                }
+                else if (Previous < 0.001f && input > 0.001f)
+                {
+                    asrc.Play();
+                }
             }
+
+            Previous = input;
         }
     }
 
@@ -56,7 +77,7 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
         asrc.bypassListenerEffects = modifier.BypassLEffects;
         asrc.bypassReverbZones = modifier.BypassReverb;
 
-        asrc.volume = modifier.Volume;
+        asrc.volume = modifier.Volume / 2;
         asrc.panStereo = modifier.StereoPan;
         asrc.spatialBlend = modifier.SpatialBlend;
         asrc.reverbZoneMix = modifier.ReverbMix;

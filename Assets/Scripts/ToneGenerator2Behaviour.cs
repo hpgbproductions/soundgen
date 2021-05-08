@@ -12,6 +12,7 @@ public class ToneGenerator2Behaviour : Jundroo.SimplePlanes.ModTools.Parts.PartM
     private AudioClipHolder alist;
 
     private bool InDesigner;
+    private float Previous = 0f;
 
     private void Start()
     {
@@ -37,7 +38,19 @@ public class ToneGenerator2Behaviour : Jundroo.SimplePlanes.ModTools.Parts.PartM
     {
         if (!InDesigner)
         {
-            asrc.volume = InputController.Value;
+            float input = InputController.Value;
+
+            asrc.volume = input / 2;
+            if (input < 0.001f)
+            {
+                asrc.Pause();
+            }
+            else if (Previous < 0.001f && input > 0.001f)
+            {
+                asrc.Play();
+            }
+
+            Previous = input;
         }
     }
 
