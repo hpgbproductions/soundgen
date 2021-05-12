@@ -34,7 +34,7 @@ public class ToneGenerator2Behaviour : Jundroo.SimplePlanes.ModTools.Parts.PartM
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!InDesigner)
         {
