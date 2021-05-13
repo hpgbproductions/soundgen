@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ModManifest buildID="cee92a9e-3ab3-4863-bfd4-049fd05dd878">
-  <Mod name="Tone Generator" author="hpgbproductions" versionMajor="1" versionMinor="2" loadPriority="1000" lastUpdated="2021-05-12T14:29:14.4322335Z" apiVersion="1.0.0.0" description="Simple tone generator part.">
+<ModManifest buildID="1685effc-3d88-4f67-94bb-9e414cff285b">
+  <Mod name="Tone Generator" author="hpgbproductions" versionMajor="1" versionMinor="1" loadPriority="1000" lastUpdated="2021-05-13T06:29:44.2789708Z" apiVersion="1.0.0.0" description="Simple tone generator part.">
     <Steam title="" visibility="Public" previewPath="" language="English" tags="">
       <description></description>
     </Steam>
