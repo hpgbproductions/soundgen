@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+// Tone Generator, Variable Frequency
+
 public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartModifierBehaviour
 {
     private ToneGenerator modifier;
@@ -14,11 +16,20 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
     private bool InDesigner;
     private float Previous = 0f;
 
+    private int AmpInputCh = -1;
+    private ToneGenerator2Behaviour AmpInput;
+    private bool AmpInputChecked = false;
+
+    public int FreqOutputCh = -1;
+    public float FreqOutput = 0f;
+
     private void Start()
     {
         InDesigner = ServiceProvider.Instance.GameState.IsInDesigner;
 
         modifier = (ToneGenerator)PartModifier;
+        AmpInputCh = modifier.AmpInputChannel;
+        FreqOutputCh = modifier.FreqOutputChannel;
 
         asrc = GetComponentInChildren<AudioSource>();
         alist = GetComponentInChildren<AudioClipHolder>();
@@ -29,8 +40,15 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
         }
         else
         {
-            asrc.mute = false;
-            ApplyValues();
+            if (FreqOutputCh >= 0)    // Frequency transmitter mode
+            {
+                asrc.enabled = false;
+            }
+            else
+            {
+                asrc.mute = false;
+                ApplyValues();
+            }
         }
     }
 
@@ -40,32 +58,70 @@ public class ToneGeneratorBehaviour : Jundroo.SimplePlanes.ModTools.Parts.PartMo
         {
             float input = InputController.Value;
 
-            if (modifier.AudioType == "Sine" | modifier.AudioType == "Square" | modifier.AudioType == "Sawtooth")
+            if (FreqOutputCh >= 0)    // Frequency transmitter enabled
             {
-                asrc.pitch = input / 256f;
-                if (input < 1f)
-                {
-                    asrc.Pause();
-                }
-                else if (Previous < 1f && input > 1f)
-                {
-                    asrc.Play();
-                }
+                FreqOutput = input;
             }
             else
             {
-                asrc.pitch = input;
-                if (input < 0.001f)
+                if (modifier.AudioType == "Sine" | modifier.AudioType == "Square" | modifier.AudioType == "Sawtooth")
                 {
-                    asrc.Pause();
+                    asrc.pitch = input / 256f;
+                    if (input < 1f)
+                    {
+                        asrc.Pause();
+                    }
+                    else if (Previous < 1f && input > 1f)
+                    {
+                        asrc.Play();
+                    }
                 }
-                else if (Previous < 0.001f && input > 0.001f)
+                else
                 {
-                    asrc.Play();
+                    asrc.pitch = input;
+                    if (input < 0.001f)
+                    {
+                        asrc.Pause();
+                    }
+                    else if (Previous < 0.001f && input > 0.001f)
+                    {
+                        asrc.Play();
+                    }
                 }
+
+                Previous = input;
             }
 
-            Previous = input;
+            if (AmpInputCh >= 0)    // Amplitude receiver enabled
+            {
+                // Apply amplitude
+                if (AmpInput == null)
+                {
+                    if (AmpInputChecked)
+                    {
+                        Debug.LogWarning("No TGVA block assigned to input channel " + AmpInputCh);
+                    }
+                    else    // Amplitude receiver check
+                    {
+                        // Search for the first amplitude transmitter of matching amplitude channel
+                        ToneGenerator2Behaviour[] AmpTxs = FindObjectsOfType<ToneGenerator2Behaviour>();
+                        Debug.Log("AmpTxs Length: " + AmpTxs.Length);
+                        foreach (ToneGenerator2Behaviour AmpTx in AmpTxs)
+                        {
+                            if (AmpTx.AmpOutputCh >= 0 && AmpTx.AmpOutputCh == AmpInputCh)
+                            {
+                                AmpInput = AmpTx;
+                                break;
+                            }
+                        }
+                        AmpInputChecked = true;
+                    }
+                }
+                else
+                {
+                    asrc.volume = AmpInput.AmpOutput / 2;
+                }
+            }
         }
     }
 

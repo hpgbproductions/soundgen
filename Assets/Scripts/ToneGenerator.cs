@@ -15,7 +15,7 @@ using UnityEngine;
 public class ToneGenerator : Jundroo.SimplePlanes.ModTools.Parts.PartModifier
 {
     [SerializeField]
-    [DesignerPropertyToggleButton("Sine", "Square", "Sawtooth", Label = "Audio Type", Order = 0)]
+    [DesignerPropertyToggleButton("Sine", "Square", "Sawtooth", Header = "Variable Frequency", Label = "Audio Type", Order = 0)]
     private string _audiotype = "Sine";
 
     [SerializeField]
@@ -61,6 +61,14 @@ public class ToneGenerator : Jundroo.SimplePlanes.ModTools.Parts.PartModifier
     [SerializeField]
     [DesignerPropertySlider(Label = "Max. Distance", MaxValue = 100f, MinValue = 0f, NumberOfSteps = 21, Order = 230)]
     private float _dist_max = 50f;
+
+    [SerializeField]
+    [DesignerPropertySlider(Header = "Multi-Input Channels", MaxValue = 15, MinValue = -1, NumberOfSteps = 17, Label = "Amplitude Input Channel", Order = 300)]
+    private int _a_in = -1;
+
+    [SerializeField]
+    [DesignerPropertySlider(Label = "Frequency Output Channel", MaxValue = 15, MinValue = -1, NumberOfSteps = 17, Order = 310)]
+    private int _f_out = -1;
 
     public string AudioType
     {
@@ -155,6 +163,22 @@ public class ToneGenerator : Jundroo.SimplePlanes.ModTools.Parts.PartModifier
         get
         {
             return _dist_max;
+        }
+    }
+
+    public int AmpInputChannel
+    {
+        get
+        {
+            return _a_in;
+        }
+    }
+
+    public int FreqOutputChannel
+    {
+        get
+        {
+            return _f_out;
         }
     }
 

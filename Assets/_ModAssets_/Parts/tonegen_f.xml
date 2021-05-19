@@ -4,7 +4,7 @@
     <Modifiers>
       <InputController defaultActivationGroup="0" defaultInput="256" defaultMax="1" defaultMin="0" invertOnMirror="false" invertType="output" name="mod_f" propertyEditorDesc="Frequency" zeroOnDeactivate="true" />
       <ModModifier id="ToneGenerator_ToneGenerator" type="ToneGenerator, ToneGenerator-Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <DefaultState _audiotype="Sine" _bypass_effects="false" _bypass_leffects="false" _bypass_reverb="false" _volume="0.5" _stereo_pan="0.5" _spatialblend="0" _reverb_mix="1" _doppler="0" _spread="0" _dist_min="5" _dist_max="50" />
+        <DefaultState _audiotype="Sine" _bypass_effects="false" _bypass_leffects="false" _bypass_reverb="false" _volume="0.5" _stereo_pan="0.5" _spatialblend="0" _reverb_mix="1" _doppler="0" _spread="0" _dist_min="5" _dist_max="50" _a_in="-1" _f_out="-1" />
       </ModModifier>
     </Modifiers>
     <AttachPoints>
